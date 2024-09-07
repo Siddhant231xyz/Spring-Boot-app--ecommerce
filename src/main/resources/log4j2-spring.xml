@@ -1,0 +1,17 @@
+<configuration>
+    <appender name="SPLUNK" class="com.splunk.logging.HttpEventCollectorLogbackAppender">
+        <url>https://localhost:8088</url> <!-- Replace with your Splunk HEC URL -->
+        <token>2da0484a-5254-4a77-a649-5cbd6c036be3</token> <!-- Replace with your HEC Token -->
+        <batch_size_count>1</batch_size_count>
+        <batch_interval>500</batch_interval>
+        <index>order_api_dev</index> <!-- Optional: Specify the index if necessary -->
+        <sourcetype>_json</sourcetype> <!-- Optional: Define the sourcetype -->
+        <layout class="ch.qos.logback.classic.PatternLayout">
+            <pattern>%d{yyyy-MM-dd HH:mm:ss} %-5level %logger{36} - %msg%n</pattern>
+        </layout>
+    </appender>
+
+    <root level="info">
+        <appender-ref ref="SPLUNK" />
+    </root>
+</configuration>
